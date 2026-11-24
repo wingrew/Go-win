@@ -37,7 +37,7 @@ class BoardView {
 
   geometry() {
     const width = this.canvas.getBoundingClientRect().width;
-    const margin = Math.max(23, width * 0.067);
+    const margin = Math.max(25, width * 0.08, width * 0.84 / this.size);
     return { width, margin, step: (width - 2 * margin) / (this.size - 1) };
   }
 
@@ -134,8 +134,8 @@ class BoardView {
       g.lineTo(end, p);
       g.moveTo(p, margin);
       g.lineTo(p, end);
-      g.fillText(String.fromCharCode(65 + i), p, margin * .47);
-      g.fillText(String(i + 1), margin * .47, p);
+      g.fillText(String.fromCharCode(65 + i), p, margin * .36);
+      g.fillText(String(i + 1), margin * .36, p);
     }
     g.stroke();
     const stars = {
