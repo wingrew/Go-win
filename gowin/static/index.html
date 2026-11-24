@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Go-win 棋类对战平台</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><i></i><i></i></div>
+      <div><p class="wordmark">Go-win</p><h1>棋类对战平台</h1></div>
+    </div>
+    <button id="tips-toggle" class="quiet" type="button" aria-controls="tips"
+      aria-expanded="true">隐藏提示</button>
+  </header>
+  <main>
+    <section class="table" aria-label="棋盘">
+      <div class="table-head"><h2 id="board-title">棋盘</h2><span id="board-size"></span></div>
+      <div class="board-frame">
+        <canvas id="board" tabindex="0" aria-label="棋盘。方向键选择落点，回车落子。"></canvas>
+      </div>
+    </section>
+    <aside class="sidebar">
+      <section class="card" aria-labelledby="setup-title">
+        <h2 id="setup-title">对局设置</h2>
+        <form id="setup">
+          <div class="fields">
+            <label>棋种<select id="kind"><option value="gomoku">五子棋</option><option value="go">围棋</option></select></label>
+            <label>棋盘边长<input id="size" type="number" min="8" max="19" value="15" required></label>
+          </div>
+          <button id="start" class="primary" type="submit">开始新局</button>
+        </form>
+      </section>
+      <section class="card" aria-labelledby="status-title">
+        <h2 id="status-title">对局状态</h2>
+        <div id="status" class="status" aria-live="polite"></div>
+        <div class="actions">
+          <button id="restart" type="button">重新开始</button>
+          <button id="undo" type="button">悔棋</button>
+          <button id="pass" type="button">虚着</button>
+          <button id="resign" class="danger" type="button">认负</button>
+        </div>
+      </section>
+      <section class="card" aria-labelledby="files-title">
+        <h2 id="files-title">存档</h2>
+        <div class="actions">
+          <button id="save" type="button">保存局面</button>
+          <button id="load" type="button">读取存档</button>
+          <input id="file" type="file" accept=".json,application/json" hidden>
+        </div>
+      </section>
+      <p id="feedback" class="feedback" role="status">选择棋种和边长后开始对局。</p>
+    </aside>
+    <p id="tips" class="tips">点击交叉点落子。坐标从左到右为 A–S，从上到下为 1–19，范围随棋盘边长变化。围棋双方连续虚着后按面积计分，白方贴 7.5 点。</p>
+  </main>
+</body>
+</html>
